@@ -1,0 +1,119 @@
+body {
+    font-family: "Open Sans", sans-serif;
+    color: #2b3e51;
+}
+
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#sidebar {
+    width: 220px;
+    height: 100%;
+    position: fixed;
+    background-color: #FFFFFF;
+    border-right: 2px dashed #000000;
+    float: left;
+    letter-spacing: -0.5px;
+    line-height: 90%;
+}
+
+#sidebar > ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #FFFFFF;;
+}
+
+#sidebar > div {
+    font-weight: bold;
+    padding: 8px 0;
+    font-style: italic;
+}
+
+#pageContainer {
+    float: right;
+    width: calc(100% - 220px);
+    height: 100%;
+}
+
+#pageContent {
+    height: 100%;
+    padding: 0 15px;
+}
+
+#bstAjaxLoader {
+    display: none;
+    width: 100px;
+    margin: 0 auto;
+    top: 200px;
+    z-index: 6000;
+}
+
+#bstAjaxLoader img {
+    width: 100px;
+    height: auto;
+}
+
+.order-table * {
+    position: relative;
+}
+
+.order-table {
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.order-table thead tr {
+    height: 60px;
+    background: #36304a;
+}
+
+.order-table thead th {
+    text-align: left;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    color: #fff;
+    line-height: 1.2;
+    font-weight: unset;
+}
+
+.order-table tbody tr {
+    height: 50px;
+}
+
+.order-table tr {
+    font-family: 'Open Sans', 'sans-serif';
+    font-size: 15px;
+    color: gray;
+    line-height: 1.2;
+    font-weight: unset;
+}
+
+.order-table .order-date {
+    width: 260px;
+    padding-left: 40px;
+}
+
+.order-table .order-id {
+    width: 160px;
+}
+
+.order-table .order-status {
+    width: 170px;
+    text-align: right;
+}
+
+.order-table .order-total {
+    width: 222px;
+    text-align: right;
+    padding-right: 62px;
+}

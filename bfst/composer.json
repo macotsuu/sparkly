@@ -1,0 +1,19 @@
+{
+  "name": "bfst/bfst",
+  "autoload": {
+    "psr-4": {
+      "BFST\\": "app/BFST/classes/"
+    },
+    "files": [
+      "app/BFST/functions/url.php"
+    ]
+  },
+  "require": {
+    "vlucas/phpdotenv": "^5.5",
+    "ext-redis": "*",
+    "ext-pdo": "*"
+  },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
