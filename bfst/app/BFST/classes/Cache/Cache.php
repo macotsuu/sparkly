@@ -13,7 +13,7 @@ class Cache extends CacheFactory
     {
         try {
             $this->redis = new Redis();
-            $this->redis->connect('localhost', 6379);
+            $this->redis->connect(env('REDIS_HOST', 'localhost'), env('REDIS_PORT', 6379));
             $this->redis->setOption(Redis::OPT_SERIALIZER, Redis::SERIALIZER_PHP);
 
         } catch (RedisException $e) {

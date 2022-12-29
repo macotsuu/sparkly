@@ -5,6 +5,7 @@
       "BFST\\": "app/BFST/classes/"
     },
     "files": [
+      "app/BFST/functions/common.php",
       "app/BFST/functions/url.php"
     ]
   },
