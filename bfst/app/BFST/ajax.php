@@ -36,7 +36,7 @@ try {
     register_shutdown_function(function () use ($e) {
         header('AjaxException: 1');
 
-        if (BFST_STAGE === 'production') {
+        if (BFST_ENVIRONMENT === 'production') {
             exit("Wystąpił błąd...");
         }
 

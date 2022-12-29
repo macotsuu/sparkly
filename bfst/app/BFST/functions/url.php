@@ -13,6 +13,6 @@ if (!function_exists('assets')) {
 if (!function_exists('redirect')) {
     function redirect(string $path): void
     {
-        header("Location: /" . BFST_URL . "{$path}", true, 302);
+        header("Location: " . BFST_APP_URL . "{$path}", true, 302);
     }
 }
