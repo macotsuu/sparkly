@@ -32,14 +32,17 @@ try {
     }
 
     echo $response;
-} catch (Exception $e) {
-    register_shutdown_function(function () use ($e) {
+} catch (\Throwable $ex) {
+
+        $response = [
+            'status' => 'error',
+            'message' => BFST_ENVIRONMENT === 'production' ? 'Coś poszło nie tak.' : $ex->getMessage(),
+            'trace' => BFST_ENVIRONMENT === 'production' ? '' : $ex->getTraceAsString()
+        ];
+
         header('AjaxException: 1');
+        header('Content-Type: application/json');
 
-        if (BFST_ENVIRONMENT === 'production') {
-            exit("Wystąpił błąd...");
-        }
+        exit(json_encode($response));
 
-        echo $e->getMessage() . PHP_EOL . $e->getTraceAsString();
-    });
 }

@@ -36,7 +36,7 @@ class  Page
      */
     public function render(): string
     {
-        ob_start('gzip');
+        ob_start('ob_gzhandler');
         require_once $this->fullPath;
         return ob_get_clean();
     }

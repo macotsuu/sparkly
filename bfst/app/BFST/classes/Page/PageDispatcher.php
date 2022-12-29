@@ -35,8 +35,6 @@ class PageDispatcher
      */
     private function loadPageGo(int $pageID): array
     {
-        $result = ["content" => "", "title" => "Strona Główna"];
-
         try {
             $page = $this->fetchPage($pageID);
             $page->isFileExists();

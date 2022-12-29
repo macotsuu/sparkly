@@ -18,6 +18,9 @@ $dotenv = Dotenv::createImmutable(BFST_DIR);
 $dotenv->load();
 
 Config::constants();
+ErrorHandling::errorHandler();
+ErrorHandling::exceptionHandler();
+
 Config::settings();
 
 foreach ([BFST_DIR_VAR, BFST_DIR_LOG] as $dir) {
@@ -26,6 +29,3 @@ foreach ([BFST_DIR_VAR, BFST_DIR_LOG] as $dir) {
         chmod($dir, 0770);
     }
 }
-ErrorHandling::errorHandler();
-
-Config::routes();
