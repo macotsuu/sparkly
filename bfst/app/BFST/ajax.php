@@ -4,10 +4,14 @@ try {
     preg_match('/(.*)::(\w+)$/', $_GET['func'], $method);
 
     $params = array();
+    $directParams = true;
 
-    if (isset($_POST)) {
-        foreach ($_POST as $key => $value) {
+    if (isset($_REQUEST)) {
+        foreach ($_REQUEST as $key => $value) {
             if ($key === 'func') {
+                continue;
+            } elseif ($key === 'directParams' && (int)$value == 0) {
+                $directParams = false;
                 continue;
             }
 
@@ -15,18 +19,8 @@ try {
         }
     }
 
-    if (isset($_GET)) {
-        foreach ($_GET as $key => $value) {
-            if ($key === 'func') {
-                continue;
-            }
-
-            $params[$key] = $value;
-        }
-    }
-
-    $instance = new $method[1]();
-    $response = $instance->{$method[2]}(...$params);
+    $instance = new $method[1];
+    $response = $directParams === true ? $instance->{$method[2]}(...$params) : $instance->{$method[2]}($params);
 
     if (is_array($response) || is_object($response)) {
         $json = json_encode($response);
