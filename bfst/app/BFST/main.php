@@ -18,7 +18,7 @@ use BFST\Sidebar;
     <script defer src="<?= assets("js/app.js"); ?>"></script>
     <script defer src="<?= assets("js/ajax.js"); ?>"></script>
 
-    <title>Blazing Sales Tools</title>
+    <title>Strona główna | Blazing Sales Tools</title>
 </head>
 <body>
 

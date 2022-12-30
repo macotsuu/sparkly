@@ -18,14 +18,16 @@ const renderPage = () => {
         }
     );
 
-    apiCall("\\Page\\PageDispatcher::loadPage", {
-        pageID: params.page ?? 1
-    }, 'GET').done(response => {
-        const obj = JSON.parse(response);
+    if (params.page > 0) {
+        apiCall("\\Page\\PageDispatcher::loadPage", {
+            pageID: params.page
+        }, 'GET').done(response => {
+            const obj = JSON.parse(response);
 
-        $("#pageContent").html(obj.content);
-        document.title = `${obj.title} | Blazing Fast Sales Tool`;
+            $("#pageContent").html(obj.content);
+            document.title = `${obj.title} | Blazing Fast Sales Tool`;
 
-        $(document).trigger('ready');
-    });
+            $(document).trigger('ready');
+        });
+    }
 }

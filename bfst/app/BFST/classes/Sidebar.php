@@ -6,7 +6,7 @@ use BFST\Database\MySQL;
 
 class Sidebar
 {
-    private array $positions;
+    private array $positions = [];
 
     public function __construct()
     {
