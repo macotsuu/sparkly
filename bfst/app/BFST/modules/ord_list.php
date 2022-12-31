@@ -19,7 +19,7 @@
 </table>
 
 <script>
-    const fetchOrders = async (page, filters = {}, limit = 100) => {
+    function fetchOrders (page, filters = {}, limit = 100) {
         let html = "";
 
         apiCall("\\Order\\OrderList::listOrders", {
@@ -52,10 +52,10 @@
 
     $(document).ready(async () => {
         // Load first page of orders...
-       await fetchOrders(0);
+       fetchOrders(0);
 
         $("#search").on('input', async e => {
-            await fetchOrders(0, {orderID: e.target.value})
+            fetchOrders(0, {orderID: e.target.value})
         });
     });
 </script>
