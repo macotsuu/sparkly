@@ -1,12 +1,9 @@
 body {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    background-color: #efefef;
+    font-size: 1.1rem;
+    font-weight: 400;
     color: #2b3e51;
-}
-
-*, *::after, *::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 }
 
 #sidebar {
@@ -58,62 +55,52 @@ body {
     height: auto;
 }
 
-.order-table * {
-    position: relative;
-}
-
-.order-table {
-    border-collapse: collapse;
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
+.table {
     width: 100%;
-    margin: 0 auto;
-    position: relative;
+    margin-bottom: 1rem;
+    color: #212529;
 }
 
-.order-table thead tr {
-    height: 60px;
-    background: #36304a;
+.table thead tr, .table thead th {
+    border-top: none;
+    border-bottom: none !important;
+    background: #f8f9fd;
 }
 
-.order-table thead th {
-    text-align: left;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 18px;
-    color: #fff;
-    line-height: 1.2;
-    font-weight: unset;
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
 }
 
-.order-table tbody tr {
-    height: 50px;
+.table tbody th, .table tbody td {
+    border: none;
+    padding: 10px;
+    font-size: 14px;
+    vertical-align: middle;
 }
 
-.order-table tr {
-    font-family: 'Open Sans', 'sans-serif';
-    font-size: 15px;
-    color: gray;
-    line-height: 1.2;
-    font-weight: unset;
+.table tbody tr {
+    margin-bottom: 10px;
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+}
+.table tbody tr:hover td {
+    color: #2b3e51;
+    font-weight: 600;
+    background: #f8f9fd;
 }
 
-.order-table .order-date {
-    width: 260px;
-    padding-left: 40px;
+.table th, .table td {
+    padding: 0.75rem;
+    vertical-align: top;
 }
 
-.order-table .order-id {
-    width: 160px;
-}
-
-.order-table .order-status {
-    width: 170px;
-    text-align: right;
-}
-
-.order-table .order-total {
-    width: 222px;
-    text-align: right;
-    padding-right: 62px;
+.searchbar #search {
+    border: none;
+    color: #2b3e51;
+    background: #efefef;
+    padding: 5px;
+    margin: 20px 0;
+    width: 50%;
 }

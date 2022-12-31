@@ -3,6 +3,7 @@
 namespace BFST;
 
 use BFST\Database\MySQL;
+use Exception;
 
 class Sidebar
 {
@@ -13,13 +14,16 @@ class Sidebar
         $this->loadMenuPositions();
     }
 
+    /**
+     * @throws Exception
+     */
     private function loadMenuPositions(): void
     {
         $rows = MySQL::i()->select("
-            SELECT me.module_id, mc.name, mo.title FROM menu me
-            LEFT JOIN menu_category mc ON me.category_id = mc.id
-            LEFT JOIN modules mo ON mo.id = me.module_id
-            ORDER BY mc.id ASC, me.position DESC
+            SELECT bm.module_id, mc.name, mo.title FROM bfst_menu bm
+            LEFT JOIN menu_category mc ON bm.category_id = mc.id
+            LEFT JOIN modules mo ON mo.id = bm.module_id
+            ORDER BY mc.id ASC, bm.position DESC
         ");
 
         foreach ($rows as $row) {

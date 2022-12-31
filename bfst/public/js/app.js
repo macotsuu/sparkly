@@ -19,14 +19,10 @@ const renderPage = () => {
     );
 
     if (params.page > 0) {
-        apiCall("\\Page\\PageDispatcher::loadPage", {
-            pageID: params.page
-        }, 'GET').done(response => {
-            const obj = JSON.parse(response);
+        apiCall("\\Page\\PageDispatcher::loadPage", { pageID: params.page }).done(page => {
+            document.title = `${page.title} | Blazing Fast Sales Tool`;
 
-            $("#pageContent").html(obj.content);
-            document.title = `${obj.title} | Blazing Fast Sales Tool`;
-
+            $("#pageContent").html(page.content);
             $(document).trigger('ready');
         });
     }

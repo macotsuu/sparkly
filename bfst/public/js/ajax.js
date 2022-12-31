@@ -2,6 +2,7 @@ const apiCall = (func, params, method = 'GET', async = true) => {
     return $.ajax({
         url: `ajax?func=\\BFST${func}`,
         accepts: 'json',
+        dataType: 'json',
         data: params,
         method: method,
         async: async,
@@ -21,6 +22,16 @@ const apiCall = (func, params, method = 'GET', async = true) => {
         }
 
         return alert(jqXHR.responseText);
+    }).then(response => {
+        try {
+            let o = JSON.parse(response);
+            if (o && typeof o === "object") {
+                return o;
+            }
+        }
+        catch (e) { }
+
+        return response;
     });
 }
 
