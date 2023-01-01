@@ -6,6 +6,6 @@
          * @return mixed
          */
         function env(string $var, string $default = null): mixed {
-            return $_ENV[$var] ?: $default;
+            return $_ENV[$var] ?? $default;
         }
     }

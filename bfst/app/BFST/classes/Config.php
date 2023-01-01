@@ -8,6 +8,11 @@ class Config
 {
     public static function constants(): void
     {
+        // Common
+        define('BFST_ENVIRONMENT', env('BFST_ENVIRONMENT', 'production'));
+        define('BFST_DEBUG', (isset($_GET['debug']) && $_GET['debug']) == 1 ? 1 : 0);
+        define('BFST_LOG_LEVEL', LogLevel::DEBUG);
+
         // DIRS
         define("BFST_DIR_APP", BFST_DIR . 'app/');
         define("BFST_DIR_CORE", BFST_DIR_APP . 'BFST/');
@@ -16,20 +21,17 @@ class Config
         define("BFST_DIR_VAR", BFST_DIR . 'var/');
         define("BFST_DIR_LOG", BFST_DIR_VAR . 'logs/');
 
-        // URLs
-        define('BFST_HTTP_PROTOCOL', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? "https://" : "http://");
-        define('BFST_HTTP_HOST', filter_input(INPUT_SERVER, 'HTTP_HOST'));
-        define('BFST_HTTP_URI', filter_input(INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_URL));
+        if (BFST_ENVIRONMENT !== 'testing') {
+            // URLs
+            define('BFST_HTTP_PROTOCOL', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? "https://" : "http://");
+            define('BFST_HTTP_HOST', filter_input(INPUT_SERVER, 'HTTP_HOST'));
+            define('BFST_HTTP_URI', filter_input(INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_URL));
 
-        preg_match('/BFST(alpha|beta)(\w+)?/', BFST_HTTP_URI, $matches);
-        define('BFST_APP_URL', BFST_HTTP_PROTOCOL . BFST_HTTP_HOST . "/" . $matches[0]);
-        define('BFST_ASSETS_URL', BFST_APP_URL . "/public/");
-
-        // Common
-        define('BFST_STAGE', $matches[1]);
-        define('BFST_ENVIRONMENT', $matches[1] ?: 'production');
-        define('BFST_DEBUG', (isset($_GET['debug']) && $_GET['debug']) == 1 ? 1 : 0);
-        define('BFST_LOG_LEVEL', LogLevel::DEBUG);
+            preg_match('/BFST(alpha|beta)(\w+)?/', BFST_HTTP_URI, $matches);
+            define('BFST_APP_URL', BFST_HTTP_PROTOCOL . BFST_HTTP_HOST . "/" . $matches[0]);
+            define('BFST_ASSETS_URL', BFST_APP_URL . "/public/");
+            define('BFST_STAGE', $matches[1]);
+        }
     }
     public static function routes(): void
     {

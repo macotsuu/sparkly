@@ -19,11 +19,29 @@ const renderPage = () => {
     );
 
     if (params.page > 0) {
-        apiCall("\\Page\\PageDispatcher::loadPage", { pageID: params.page }).done(page => {
-            document.title = `${page.title} | Blazing Fast Sales Tool`;
+        apiCall("\\Module\\ModuleDispatcher::loadModule", { moduleID: params.page }).done(module => {
+            const {
+                title,
+                content,
+                assets
+            } = module;
 
-            $("#pageContent").html(page.content);
-            $(document).trigger('ready');
+            if (assets) {
+                $.each(assets.styles, (i, style) => {
+                    if (!$(`link[href="${style}"]`).length) {
+                        $('head').append(`<link rel="stylesheet" href="${style}"/>`);
+                    }
+                });
+
+                $.each(assets.scripts, (i, script) => {
+                    if (!$(`script[src="${script}"]`).length) {
+                        $('head').append(`<script defer src="${script}"></script>`);
+                    }
+                });
+            }
+
+            $("#pageContent").html(content).trigger('ready');
+            $(document).title = `${title !== undefined ? title + ' | ' : ''}Blazing Fast Sales Tool`;
         });
     }
 }

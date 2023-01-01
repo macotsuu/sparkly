@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <phpunit
-        bootstrap="vendor/autoload.php"
+        bootstrap="app/init.php"
         colors="true"
         stopOnFailure="false"
 >
@@ -11,6 +11,6 @@
     </testsuites>
 
     <php>
-        <env name="BFST_ENVIRONMENT" value="beta"/>
+        <env name="BFST_ENVIRONMENT" value="testing"/>
     </php>
 </phpunit>

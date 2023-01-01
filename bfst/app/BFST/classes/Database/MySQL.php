@@ -9,6 +9,23 @@ use PDOException;
 
 class MySQL extends DatabaseFactory
 {
+
+    /**
+     * @param string $query
+     * @param string|null $byIndex
+     * @return mixed
+     * @throws Exception
+     */
+    public function first(string $query, string $byIndex = null): mixed
+    {
+        return $this->run($query, function (string $query) {
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute();
+
+            return $stmt->fetch();
+        });
+    }
+
     /**
      * @param string $query
      * @param string|null $byIndex
