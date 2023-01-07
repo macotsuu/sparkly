@@ -7,25 +7,19 @@ use Exception;
 class OrderList
 {
     /**
-     * @param int $page
-     * @param int $limit
      * @param array $filters {
      *      orderID: int
      * }
      * @param array $params {
      *      returnAsObjects: bool
      * }
-     * @return array
+     * @return array<int, array>
      * @throws Exception
      */
-    public function listOrders(array $filters = [], array $params = []): array
+    public function listOrders(array $filters, array $params = []): array
     {
-        $orderFilter = new OrderFilter();
-        $orderFilter->setFilterParams(new OrderFilterParams($filters));
-
-        if (!$orderFilter->fetchOrders(0, 100)) {
-            return ['message' => 'Brak zamówień'];
-        }
+        $orderFilter = new OrderFilters($filters);
+        $orderFilter->fetchOrders($orderFilter->page, $orderFilter->limit);
 
         if (isset($params['returnAsObjects']) && $params['returnAsObjects'] === true) {
             //TODO: Return Array<Order>
