@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<phpunit
-        bootstrap="app/init.php"
-        colors="true"
-        stopOnFailure="false"
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
+         beStrictAboutChangesToGlobalState="true"
+         beStrictAboutOutputDuringTests="true"
+         colors="true"
+         bootstrap="app/init.php"
+         executionOrder="random"
 >
     <testsuites>
         <testsuite name="Unit Tests">

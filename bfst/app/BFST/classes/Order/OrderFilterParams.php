@@ -1,10 +1,11 @@
 <?php
 
-namespace BFST\Order;
+namespace Order;
 
 class OrderFilterParams
 {
     public int $orderID = 0;
+
     public function __construct(array $params = null)
     {
         if ($params !== null) {

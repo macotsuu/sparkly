@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html lang="pl">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
-        <style>
-            @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+    <script src="<?= assets("js/libraries/ajax.js"); ?>"></script>
+    <script src="<?= assets('js/libraries/hashdom.js'); ?>"></script>
 
-            body{
-                margin: 0;
-                font-size: .9rem;
-                font-weight: 400;
-                line-height: 1.6;
-                color: #212529;
-                text-align: left;
-                background-color: #f5f8fa;
-            }
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
-            .form-group {
-                padding: 8px 0;
-            }
-        </style>
+        body {
+            margin: 0;
+            font-size: .9rem;
+            font-weight: 400;
+            line-height: 1.6;
+            color: #212529;
+            text-align: left;
+            background-color: #f5f8fa;
+        }
 
-        <title>Logowanie | Blazing Fast Sales Tool</title>
+        .form-group {
+            padding: 8px 0;
+        }
+    </style>
+
+    <title>Logowanie | Blazing Fast Sales Tool</title>
     </head>
     <body>
         <div class="container">
@@ -53,7 +56,7 @@
 
                                 <div class="form-group row">
                                     <span id="error"></span>
-                                    <input type="submit" value="Zaloguj się" />
+                                    <input type="submit" value="Zaloguj się"/>
                                 </div>
                             </form>
                         </div>
@@ -63,25 +66,20 @@
         </div>
 
         <script>
-            $("#login").submit(ev => {
-               $.ajax("<?= BFST_APP_URL ?>/ajax?func=\\BFST\\User\\Authorization::authorize", {
-                   method: 'POST',
-                   data: {
-                       email: $("#email").val(),
-                       password: $("#password").val()
-                   },
-                   success: data => {
-                       const response = JSON.parse(data);
+            hash('#login').on('submit', e => {
+                e.preventDefault();
 
-                       if (response.status === 1) {
-                           window.location = "<?= BFST_APP_URL ?>";
-                       }
+                ajax.call('\\User\\Authorization\\Authorization::authorize', {
+                    email: document.querySelector('#email').value,
+                    password: document.querySelector('#password').value
+                }).then(response => {
+                    if (response.status === 'ok') {
+                        window.location.href = '/BFSTalpha';
+                    }
 
-                       $('#error').html(response.message);
-                   }
-               })
-                ev.preventDefault();
-            });
+                    document.querySelector('#error').innerHTML = response.message
+                });
+            })
         </script>
     </body>
 </html>

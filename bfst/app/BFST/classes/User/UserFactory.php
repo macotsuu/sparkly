@@ -1,23 +1,26 @@
 <?php
 
-namespace BFST\User;
+namespace User;
 
-use BFST\Database\MySQL;
-use Exception;
+use User\Authorization\AuthorizationException;
+use Volcano\Database\MySQL;
 
 class UserFactory
 {
     /**
      * @param string $email
      * @return User
-     * @throws Exception
+     * @throws AuthorizationException
      */
     public static function make(string $email): User
     {
-        $user = MySQL::i()->select("SELECT id, email, password FROM users WHERE email = '" . addslashes($email) . "' LIMIT 1");
+        $sql = MySQL::i();
+        $user = $sql->select(
+            "SELECT id, email, password FROM users WHERE email = '" . addslashes($email) . "' LIMIT 1"
+        );
 
         if (!$user) {
-            throw new Exception("Użytkownik nie został znaleziony.");
+            throw new AuthorizationException("Użytkownik nie został znaleziony.");
         }
 
         return new User(

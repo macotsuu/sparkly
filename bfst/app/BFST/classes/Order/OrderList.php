@@ -1,6 +1,6 @@
 <?php
 
-namespace BFST\Order;
+namespace Order;
 
 use Exception;
 
@@ -19,12 +19,12 @@ class OrderList
      * @return array
      * @throws Exception
      */
-    public function listOrders(int $page, int $limit, array $filters = [], array $params = []): array
+    public function listOrders(array $filters = [], array $params = []): array
     {
         $orderFilter = new OrderFilter();
         $orderFilter->setFilterParams(new OrderFilterParams($filters));
 
-        if (!$orderFilter->fetchOrders($page, $limit)) {
+        if (!$orderFilter->fetchOrders(0, 100)) {
             return ['message' => 'Brak zamówień'];
         }
 

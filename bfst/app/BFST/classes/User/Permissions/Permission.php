@@ -1,8 +1,8 @@
 <?php
 
-namespace BFST\User\Permissions;
+namespace User\Permissions;
 
-use BFST\Database\MySQL;
+use Volcano\Database\MySQL;
 
 class Permission
 {

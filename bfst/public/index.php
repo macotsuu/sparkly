@@ -1,14 +1,16 @@
 <?php
 
-use BFST\Config;
-use BFST\Logger\Logger;
-
 define('BFST_APP_START', microtime(true));
-require_once '../app/init.php';
-Config::routes();
-define('BFST_APP_END', microtime(true));
+define('BFST_DIR', dirname(__DIR__) . '/');
 
-Logger::logger()->debug(
-    'timers/execution_time',
-    BFST_HTTP_URI . ' ' . round(BFST_APP_END - BFST_APP_START, 2) . ' s'
-);
+if (PHP_SAPI == 'cli-server') {
+    $url  = parse_url($_SERVER['REQUEST_URI']);
+    $file = __DIR__ . $url['path'];
+    if (is_file($file)) {
+        return false;
+    }
+}
+
+require_once BFST_DIR . 'app/init.php';
+
+define('BFST_APP_END', microtime(true));

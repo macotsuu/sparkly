@@ -1,13 +1,17 @@
 <?php
-    /** @var \BFST\Module\Module $module */
-    $module->addScripts(assets("js/orders/bootstrap.js"));
-    $module->addStyle(assets("css/orders.css"));
+
+/** @var Module $module */
+
+use Volcano\Module\Module;
+
+$module->addScripts(assets("js/modules/ord_list.js"));
+$module->addStyle(assets("css/orders.css"));
 ?>
 
 <div class="searchbar">
     <div class="searchbox">
         <label for="search"><i class="fa-solid fa-magnifying-glass"></i></label>
-        <input type="text" id="search" placeholder="Wyszukaj przez # zamówienia" />
+        <input type="text" id="search" placeholder="Wyszukaj przez # zamówienia"/>
     </div>
 </div>
 

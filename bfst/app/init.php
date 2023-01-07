@@ -1,31 +1,22 @@
 <?php
 
-use BFST\Config;
-use BFST\ErrorHandling;
-use Dotenv\Dotenv;
-
-define('BFST_DIR', dirname(__DIR__) . '/');
-
-if (!file_exists(BFST_DIR . 'vendor/autoload.php')) {
+if (file_exists(BFST_DIR . 'vendor/autoload.php') === false) {
     trigger_error(
         'Composer dependencies have not been set up yet run ',
         E_USER_ERROR
     );
 }
+
 require_once BFST_DIR . 'vendor/autoload.php';
 
-$dotenv = Dotenv::createImmutable(BFST_DIR);
-$dotenv->load();
+session_start();
 
-Config::constants();
-ErrorHandling::errorHandler();
-ErrorHandling::exceptionHandler();
+$app = new \Volcano\Application();
 
-Config::settings();
+require_once BFST_DIR . 'app/settings.php';
+(require_once BFST_DIR . 'app/routes.php')($app);
 
-foreach ([BFST_DIR_VAR, BFST_DIR_LOG] as $dir) {
-    if (!file_exists($dir)) {
-        mkdir($dir, 0777, true);
-        chmod($dir, 0770);
-    }
+try {
+    $app->run();
+} catch (Exception $e) {
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace BFST\User;
+namespace User;
 
-use Exception;
+use User\Authorization\AuthorizationException;
 
 class User
 {
@@ -17,14 +17,23 @@ class User
     /**
      * @param string $password
      * @return bool
-     * @throws Exception
+     * @throws AuthorizationException
      */
     public function isPasswordMatch(string $password): bool
     {
         if (!password_verify(trim($password), $this->password)) {
-            throw new Exception("Hasło nie prawidłowe.");
+            throw new AuthorizationException("Hasło nie prawidłowe.");
         }
 
         return true;
+    }
+
+    /**
+     * @return void
+     */
+    public function setSessionData(): void
+    {
+        $_SESSION['user']['id'] = $this->id;
+        $_SESSION['user']['email'] = $this->email;
     }
 }

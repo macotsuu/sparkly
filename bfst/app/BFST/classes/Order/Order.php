@@ -1,6 +1,6 @@
 <?php
 
-namespace BFST\Order;
+namespace Order;
 
 class Order
 {

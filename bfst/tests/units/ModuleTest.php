@@ -1,9 +1,9 @@
 <?php
 
-use BFST\Module\Module;
 use PHPUnit\Framework\TestCase;
+use Volcano\Module\Module;
 
-    class ModuleTest extends TestCase
+class ModuleTest extends TestCase
     {
         public function testModuleInstance(): Module {
             $module = new Module(
