@@ -24,7 +24,7 @@ class Application extends Routing\Router
     public function run(): void
     {
         $route = $this->handle(
-            BFST_HTTP_URI,
+            filter_input(INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_URL),
             $_SERVER['REQUEST_METHOD']
         );
 

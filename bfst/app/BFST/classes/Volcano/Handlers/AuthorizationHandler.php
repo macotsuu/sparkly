@@ -4,7 +4,6 @@ namespace Volcano\Handlers;
 
 class AuthorizationHandler extends AbstractHandler
 {
-
     public function beforeAction()
     {
         if (isset($_SESSION['user'])) {

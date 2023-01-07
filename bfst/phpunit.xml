@@ -4,7 +4,7 @@
          beStrictAboutChangesToGlobalState="true"
          beStrictAboutOutputDuringTests="true"
          colors="true"
-         bootstrap="app/init.php"
+         bootstrap="tests/bootstrap.php"
          executionOrder="random"
 >
     <testsuites>

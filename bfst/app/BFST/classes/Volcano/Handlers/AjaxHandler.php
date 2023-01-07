@@ -26,6 +26,6 @@ class AjaxHandler extends AbstractHandler
             throw new RuntimeException(sprintf('Callable %s does not exist', $class));
         }
 
-        return call_user_func([new $class, $method], ...$requestBody['arguments'] ?? []);
+        return call_user_func([new $class(), $method], ...$requestBody['arguments'] ?? []);
     }
 }

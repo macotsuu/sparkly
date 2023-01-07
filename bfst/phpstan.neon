@@ -1,5 +1,6 @@
 parameters:
     level: max
     paths:
-		- app
-		- tests
+        - app
+        - public
+        - tests

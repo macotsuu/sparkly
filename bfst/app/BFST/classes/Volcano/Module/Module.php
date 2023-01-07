@@ -9,12 +9,11 @@ class Module
     public string $fullPath;
 
     public function __construct(
-        public int    $moduleID,
+        public int $moduleID,
         public string $filename,
         public string $title,
-        public bool   $active
-    )
-    {
+        public bool $active
+    ) {
         $this->fullPath = BFST_DIR_MODULES . $this->filename;
     }
 

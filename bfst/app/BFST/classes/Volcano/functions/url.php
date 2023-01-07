@@ -7,7 +7,7 @@ if (!function_exists('assets')) {
      */
     function assets(string $url): string
     {
-        return BFST_ASSETS_URL . $url;
+        return 'public/' . $url;
     }
 
 }
@@ -15,7 +15,7 @@ if (!function_exists('assets')) {
 if (!function_exists('redirect')) {
     function redirect(string $path): void
     {
-        header("Location: " . BFST_APP_URL . $path, true, 302);
+        header("Location: " . '/BFSTalpha/' . $path, true, 302);
     }
 
 }

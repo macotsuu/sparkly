@@ -9,6 +9,9 @@
       "app/BFST/classes/Volcano/functions/url.php"
     ]
   },
+  "autoload-dev": {
+    "\\BFST\\Units": "tests/units"
+  },
   "require": {
     "vlucas/phpdotenv": "^5.5",
     "ext-redis": "*",
@@ -23,11 +26,13 @@
   "scripts": {
     "test": [
       "@phpunit",
+      "@phpcbf",
       "@phpcs",
       "@phpstan"
     ],
     "phpunit": "phpunit",
     "phpcs": "phpcs",
+    "phpcbf": "phpcbf",
     "phpstan": "phpstan --memory-limit=-1"
   },
   "config": {

@@ -34,7 +34,6 @@ class Cache extends CacheFactory
             return $this->redis->setex($key, $ttl, $value);
         } catch (RedisException) {
         }
-
     }
 
     /**

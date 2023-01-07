@@ -9,9 +9,7 @@ final class Callback
     public function __construct(
         private readonly string $instance,
         private readonly string $method = '__invoke'
-    )
-    {
-
+    ) {
     }
 
     /**
@@ -20,7 +18,7 @@ final class Callback
      */
     public function execute(): void
     {
-        $response = call_user_func([new $this->instance, $this->method]);
+        $response = call_user_func([new $this->instance(), $this->method]);
 
         if (is_array($response) || is_object($response)) {
             $json = json_encode($response);
@@ -33,5 +31,4 @@ final class Callback
 
         echo $response;
     }
-
 }

@@ -6,7 +6,6 @@ use Volcano\Cache\Cache;
 
 class MainPageHandler extends AbstractHandler
 {
-
     public function beforeAction()
     {
         if (!isset($_SESSION['user'])) {
@@ -25,5 +24,4 @@ class MainPageHandler extends AbstractHandler
 
         return $result;
     }
-
 }
