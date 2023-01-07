@@ -7,10 +7,10 @@ use RuntimeException;
 final class CallbackResolver
 {
     /**
-     * @param string|callable|array $toResolve
+     * @param mixed $toResolve
      * @return Callback
      */
-    public function resolve(string|callable|array $toResolve): Callback
+    public function resolve(mixed $toResolve): Callback
     {
         $resolved = $this->prepareToResolve($toResolve);
 
@@ -21,10 +21,10 @@ final class CallbackResolver
     }
 
     /**
-     * @param string|callable|array $toResolve
+     * @param mixed $toResolve
      * @return array
      */
-    private function prepareToResolve(string|callable|array $toResolve): array
+    private function prepareToResolve(mixed $toResolve): array
     {
         if (is_array($toResolve)) {
             [$class, $method] = $toResolve;

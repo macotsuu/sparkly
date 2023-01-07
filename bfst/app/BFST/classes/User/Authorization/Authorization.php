@@ -9,7 +9,7 @@ class Authorization
     /**
      * @param string $email
      * @param string $password
-     * @return array
+     * @return array<string>
      */
     public function authorize(string $email, string $password): array
     {

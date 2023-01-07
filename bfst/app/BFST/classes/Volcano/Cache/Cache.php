@@ -5,7 +5,7 @@ namespace Volcano\Cache;
 use Redis;
 use RedisException;
 
-class Cache extends CacheFactory
+final class Cache extends CacheFactory
 {
     private Redis $redis;
 
@@ -13,7 +13,10 @@ class Cache extends CacheFactory
     {
         try {
             $this->redis = new Redis();
-            $this->redis->connect(env('REDIS_HOST', 'localhost'), env('REDIS_PORT', 6379));
+            $this->redis->connect(
+                env('REDIS_HOST', 'localhost'),
+                env('REDIS_PORT', '6379')
+            );
             $this->redis->setOption(Redis::OPT_SERIALIZER, Redis::SERIALIZER_PHP);
         } catch (RedisException $e) {
             echo $e->getMessage();
@@ -33,6 +36,7 @@ class Cache extends CacheFactory
         try {
             return $this->redis->setex($key, $ttl, $value);
         } catch (RedisException) {
+            return false;
         }
     }
 

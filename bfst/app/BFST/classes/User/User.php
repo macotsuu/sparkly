@@ -20,11 +20,15 @@ class User
      */
     public function isPasswordMatch(string $password): bool
     {
-        if (!password_verify(trim($password), $this->password)) {
-            throw new AuthorizationException("Hasło nie prawidłowe.");
+        if ($this->password !== null) {
+            if (!password_verify(trim($password), $this->password)) {
+                throw new AuthorizationException("Hasło nie prawidłowe.");
+            }
+
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     /**
