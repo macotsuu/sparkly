@@ -2,8 +2,6 @@
 
 namespace Volcano\Handlers;
 
-use Volcano\Cache\Cache;
-
 class MainPageHandler extends AbstractHandler
 {
     public function beforeAction()
@@ -15,11 +13,14 @@ class MainPageHandler extends AbstractHandler
 
     public function action()
     {
-        $result = Cache::cache()->get(__CLASS__);
+        $result = cache()->get(__CLASS__);
 
         if ($result === false) {
-            $result = require_once BFST_DIR_CORE . 'mainpage.php';
-            Cache::cache()->set(__CLASS__ . $result, 15);
+            ob_start();
+            require_once config()->path()->core . 'mainpage.php';
+            $result = ob_get_clean();
+
+            cache()->set(__CLASS__ . $result, 15);
         }
 
         return $result;

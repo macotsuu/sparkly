@@ -5,7 +5,4 @@
 
     <rule ref="PSR12"/>
     <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
-
-    <file>app</file>
-    <file>tests</file>
 </ruleset>

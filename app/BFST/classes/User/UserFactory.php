@@ -3,7 +3,7 @@
 namespace User;
 
 use User\Authorization\AuthorizationException;
-use Volcano\Database\MySQL;
+use Volcano\Foundation\MySQL;
 
 class UserFactory
 {

@@ -16,6 +16,6 @@ class AuthorizationHandler extends AbstractHandler
      */
     protected function action()
     {
-        return require_once BFST_DIR_CORE . 'authorize.php';
+        return include_once config()->path()->core . 'authorize.php';
     }
 }

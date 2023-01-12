@@ -9,15 +9,16 @@ class Module
     public string $fullPath;
 
     public function __construct(
-        public int $moduleID,
+        public int    $moduleID,
         public string $filename,
         public string $title,
-        public bool $active
+        public bool   $active
     ) {
-        $this->fullPath = BFST_DIR_MODULES . $this->filename;
+        $this->fullPath = config()->path()->modules . $this->filename;
     }
 
-    /** Sprawdza, czy plik modułu istnieje
+    /**
+     * Sprawdza, czy plik modułu istnieje
      *
      * @return bool
      */
@@ -26,7 +27,8 @@ class Module
         return file_exists($this->fullPath);
     }
 
-    /** Sprawdza, czy podany moduł jest aktywny.
+    /**
+     * Sprawdza, czy podany moduł jest aktywny.
      *
      * @return bool
      */
@@ -35,7 +37,8 @@ class Module
         return $this->active;
     }
 
-    /** Sprawdza, czy użytkownik ma dostęp do modułu
+    /**
+     * Sprawdza, czy użytkownik ma dostęp do modułu
      *
      * @return bool
      */
@@ -44,7 +47,8 @@ class Module
         return in_array($this->moduleID, $_SESSION['user']['permissions']);
     }
 
-    /** Dołączanie pliku CSS modułu
+    /**
+     * Dołączanie pliku CSS modułu
      *
      * @param string $url
      * @return $this
@@ -55,7 +59,8 @@ class Module
         return $this;
     }
 
-    /** Dołączanie pliku JS modułu
+    /**
+     * Dołączanie pliku JS modułu
      *
      * @param string $url
      * @return $this
@@ -66,7 +71,8 @@ class Module
         return $this;
     }
 
-    /** Ładowanie modułu w skompresowanej postaci
+    /**
+     * Ładowanie modułu w skompresowanej postaci
      *
      * @return string
      */
@@ -74,7 +80,7 @@ class Module
     {
         ob_start('ob_gzhandler');
         extract(['module' => $this]);
-        require_once $this->fullPath;
+        include_once $this->fullPath;
         return ob_get_clean();
     }
 

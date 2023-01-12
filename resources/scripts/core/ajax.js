@@ -1,5 +1,7 @@
 window.ajax = {
     call: (func, params) => {
+        hash('#loader').css({display: 'block'});
+
         return fetch(`/BFSTalpha/ajax`, {
             method: 'POST',
             headers: {
@@ -10,6 +12,10 @@ window.ajax = {
                 'function': func,
                 'arguments': params
             })
-        }).then(response => response.json()).catch(err => console.error(err))
+        }).then(response => {
+            hash('#loader').css({display: 'none'});
+
+            return response.json()
+        }).catch(err => console.error(err))
     }
 }

@@ -1,15 +1,16 @@
 <?php
 
-namespace Volcano\Cache;
+namespace Volcano\Foundation;
 
 use Redis;
 use RedisException;
 
-final class Cache extends CacheFactory
+final class Cache
 {
+    /** @var Redis $redis */
     private Redis $redis;
 
-    protected function __construct()
+    public function __construct()
     {
         try {
             $this->redis = new Redis();
@@ -21,8 +22,6 @@ final class Cache extends CacheFactory
         } catch (RedisException $e) {
             echo $e->getMessage();
         }
-
-        parent::__construct();
     }
 
     /**

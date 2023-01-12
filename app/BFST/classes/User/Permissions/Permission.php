@@ -2,7 +2,7 @@
 
 namespace User\Permissions;
 
-use Volcano\Database\MySQL;
+use Volcano\Foundation\MySQL;
 
 class Permission
 {

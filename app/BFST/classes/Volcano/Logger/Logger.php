@@ -2,15 +2,13 @@
 
 namespace Volcano\Logger;
 
-class Logger extends LoggerFactory
+class Logger
 {
     private string $folderLog;
 
-    protected function __construct()
+    public function __construct()
     {
-        $this->folderLog = BFST_DIR_LOG;
-
-        parent::__construct();
+        $this->folderLog = config()->path()->logs;
     }
 
     /**
@@ -47,7 +45,7 @@ class Logger extends LoggerFactory
      */
     private function isLowerThan(int $level): bool
     {
-        return BFST_LOG_LEVEL < $level;
+        return config()->get('BFST_LOG_LEVEL') < $level;
     }
 
     /**

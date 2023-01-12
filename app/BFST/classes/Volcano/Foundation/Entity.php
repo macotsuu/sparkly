@@ -1,6 +1,6 @@
 <?php
 
-namespace Volcano\Database;
+namespace Volcano\Foundation;
 
 use RuntimeException;
 

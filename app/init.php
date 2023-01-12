@@ -22,12 +22,13 @@ if (file_exists(BFST_DIR . '.env')) {
 
 session_start();
 
-$app = new \Volcano\Application();
+$app = Volcano\Application::getInstance();
 
-require_once BFST_DIR . 'app/settings.php';
+(require_once BFST_DIR . 'app/settings.php')($app);
 (require_once BFST_DIR . 'app/routes.php')($app);
-\Volcano\Logger\Logger::logger()->debug('dominik/$result', print_r('test', true));
 
 try {
     $app->run();
-} catch (Exception $e) {}
+} catch (Exception $e) {
+    print_r($e);
+}

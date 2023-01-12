@@ -3,7 +3,6 @@
 namespace Volcano\Module;
 
 use Exception;
-use Volcano\Database\MySQL;
 
 class ModuleFactory
 {
@@ -15,7 +14,7 @@ class ModuleFactory
      */
     public static function create(int $moduleID): ?Module
     {
-        $row = MySQL::i()->first("SELECT id, filename, title, active FROM modules WHERE id = $moduleID");
+        $row = mysql()->first("SELECT id, filename, title, active FROM modules WHERE id = $moduleID");
 
         if ($row !== false) {
             $module = new Module(

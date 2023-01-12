@@ -1,7 +1,12 @@
 <?php
 
-    return function (\Volcano\Application $app) {
-        $app->get('/', \Volcano\Handlers\MainPageHandler::class);
-        $app->get('/authorize', \Volcano\Handlers\AuthorizationHandler::class);
-        $app->post('/ajax', \Volcano\Handlers\AjaxHandler::class);
-    };
+use Volcano\Application;
+use Volcano\Handlers\AjaxHandler;
+use Volcano\Handlers\AuthorizationHandler;
+use Volcano\Handlers\MainPageHandler;
+
+return function (Application $app) {
+    $app->route(['GET'], '/', MainPageHandler::class);
+    $app->route(['GET'], '/authorize', AuthorizationHandler::class);
+    $app->route(['POST'], '/ajax', AjaxHandler::class);
+};

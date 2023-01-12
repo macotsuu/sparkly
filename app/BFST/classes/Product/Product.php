@@ -2,9 +2,8 @@
 
 namespace Product;
 
-use Volcano\Database\Entity;
+use Volcano\Foundation\Entity;
 
 class Product extends Entity
 {
-
 }

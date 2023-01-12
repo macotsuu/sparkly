@@ -4,7 +4,6 @@ namespace Volcano\Module;
 
 use Exception;
 use RedisException;
-use Volcano\Cache\Cache;
 
 class ModuleDispatcher
 {
@@ -32,7 +31,6 @@ class ModuleDispatcher
                 $result = $module->render();
                 $this->saveIntoCache($moduleID, $result);
             } catch (ModuleException $exception) {
-
                 return [
                     "content" => sprintf(
                         "[?page=%d] %s",
@@ -63,10 +61,11 @@ class ModuleDispatcher
      */
     private function getFromCache(int $moduleID): mixed
     {
-        return Cache::cache()->get("?page=$moduleID");
+        return cache()->get("?page=$moduleID");
     }
 
-    /** Zapis wyniku do pamięci Cache
+    /**
+     * Zapis wyniku do pamięci Cache
      *
      * @param int $moduleID
      * @param array $result
@@ -76,7 +75,7 @@ class ModuleDispatcher
     private function saveIntoCache(int $moduleID, array $result): void
     {
         if ($this->useCache) {
-            Cache::cache()->set("?page=$moduleID", $result);
+            cache()->set("?page=$moduleID", $result);
         }
     }
 }

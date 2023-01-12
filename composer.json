@@ -5,17 +5,16 @@
       "": "app/BFST/classes/"
     },
     "files": [
-      "app/BFST/classes/Volcano/functions/common.php",
-      "app/BFST/classes/Volcano/functions/url.php"
+      "app/BFST/classes/Volcano/helpers.php"
     ]
   },
   "autoload-dev": {
     "\\BFST\\Units": "tests/units"
   },
   "require": {
-    "vlucas/phpdotenv": "^5.5",
     "ext-redis": "*",
     "ext-pdo": "*",
+    "vlucas/phpdotenv": "^5.5",
     "volcano/routing": "^0.1.0"
   },
   "require-dev": {
@@ -28,8 +27,9 @@
       "@phpstan"
     ],
     "phpunit": "phpunit",
-    "phpcs": "tools/php_codesniffer/vendor/phpcs",
-    "phpstan": "tools/phpstan/vendor/phpstan --memory-limit=-1"
+    "phpcbf": "tools/php_codesniffer/vendor/bin/phpcbf --standard=PSR12 app",
+    "phpcs": "tools/php_codesniffer/vendor/bin/phpcs --standard=PSR12 app",
+    "phpstan": "tools/phpstan/vendor/bin/phpstan --memory-limit=-1"
   },
   "config": {
     "sort-packages": true

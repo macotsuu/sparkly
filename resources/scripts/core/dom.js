@@ -3,8 +3,7 @@ if (window.$ === undefined) {
 }
 
 class HashDOM extends Array {
-    ready(callback)
-    {
+    ready(callback) {
         const isReadySelector = this.some((el) => {
             return el.readyState !== null && el.readyState !== 'loading'
         })
@@ -16,8 +15,7 @@ class HashDOM extends Array {
         this.on('DOMContentLoaded', callback)
     }
 
-    on(event, selector, callback)
-    {
+    on(event, selector, callback) {
         if (typeof selector === 'function') {
             this.forEach((e) => {
                 e.addEventListener(event, selector)
@@ -78,9 +76,13 @@ HashDOM.prototype.removeClass = function (className) {
     return this
 }
 
-HashDOM.prototype.css = function (property, value) {
+HashDOM.prototype.css = function (styles) {
     this.forEach((el) => {
-        el.style[property] = value
+        for (const property in styles) {
+            if (styles.hasOwnProperty(property)) {
+                el.style[property] = styles[property];
+            }
+        }
     })
 
     return this

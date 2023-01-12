@@ -2,10 +2,10 @@
 
 namespace Order;
 
-use Volcano\Database\MySQL;
-use Volcano\Database\Entity;
-use Product\Product;
 use Exception;
+use Product\Product;
+use Volcano\Foundation\Entity;
+use Volcano\Foundation\MySQL;
 
 class Order extends Entity
 {
@@ -31,7 +31,7 @@ class Order extends Entity
     public function __construct(MySQL $sql = null)
     {
         $this->customer = new Address();
-        $this->sql = $sql ?: MySQL::i();
+        $this->sql = $sql ?: new MySQL();
     }
 
     /**

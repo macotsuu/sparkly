@@ -7,10 +7,11 @@ use User\Authorization\AuthorizationException;
 class User
 {
     public function __construct(
-        public ?int $id = null,
-        public ?string $email = null,
+        public ?int              $id = null,
+        public ?string           $email = null,
         private readonly ?string $password = null
-    ) {
+    )
+    {
     }
 
     /**

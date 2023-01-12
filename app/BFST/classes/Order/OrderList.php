@@ -8,11 +8,12 @@ class OrderList
 {
     /**
      * @param array $filters {
-     *      orderID: int
-     * }
+     *                        orderID: int
+     *                        }
      * @param array $params {
-     *      returnAsObjects: bool
-     * }
+     *                        returnAsObjects:
+     *                        bool
+     *                        }
      * @return array<int, array>
      * @throws Exception
      */

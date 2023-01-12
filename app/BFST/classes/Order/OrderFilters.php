@@ -2,9 +2,8 @@
 
 namespace Order;
 
-use Volcano\Database\MySQL;
-use Volcano\Logger\Logger;
 use Exception;
+use Volcano\Foundation\MySQL;
 
 class OrderFilters
 {
@@ -12,16 +11,22 @@ class OrderFilters
     private array $filters = [];
     public int $page = 0;
     public int $limit = 100;
+    public MySQL $mySQL;
 
     public function __construct(array $filters)
     {
+        $this->mySQL = new MySQL();
+
         $this->page = $filters['page'] ?? $this->page;
         $this->limit = $filters['limit'] ?? $this->limit;
 
         $this->filters[] = isset($filters['orderID']) ? "o.order_id LIKE '%{$filters['orderID']}%'" : "";
-        $this->filters = array_filter($this->filters, function ($value) {
-            return trim($value) !== '';
-        });
+        $this->filters = array_filter(
+            $this->filters,
+            function ($value) {
+                return trim($value) !== '';
+            }
+        );
     }
 
     /**
@@ -32,19 +37,17 @@ class OrderFilters
      */
     public function fetchOrders(int $page = 0, int $limit = 100): bool
     {
-        $sql = MySQL::i();
-
         $query = "
             SELECT o.*
             FROM orders o
-            ". (!empty($this->filters) ? "WHERE " . implode(" AND ", $this->filters) : "") . "
+            " . (!empty($this->filters) ? "WHERE " . implode(" AND ", $this->filters) : "") . "
             LIMIT $page, $limit
         ";
 
-        $rows = $sql->select($query);
+        $rows = $this->mySQL->select($query);
         $orderIds = array_column($rows, 'order_id');
 
-        $productsRows = $sql->select(
+        $productsRows = $this->mySQL->select(
             "SELECT * FROM orders_products WHERE order_id IN (" . implode(',', $orderIds) . ");"
         );
 

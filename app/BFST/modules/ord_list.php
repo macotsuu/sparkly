@@ -1,6 +1,8 @@
 <?php
 
-/** @var Module $module */
+/**
+ * @var Module $module
+ */
 
 use Volcano\Module\Module;
 
