@@ -12,10 +12,15 @@ window.ajax = {
                 'function': func,
                 'arguments': params
             })
-        }).then(response => {
-            hash('#loader').css({display: 'none'});
+        })
+            .then(response => response.json())
+            .then(async res => {
+                hash('#loader').css({display: 'none'});
 
-            return response.json()
-        }).catch(err => console.error(err))
+                if (res.error === true) {
+                    return alert(res.message);
+                }
+                return res
+            }).catch(err => console.error(err))
     }
 }

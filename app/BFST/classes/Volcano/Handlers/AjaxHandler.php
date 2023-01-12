@@ -3,6 +3,7 @@
 namespace Volcano\Handlers;
 
 use RuntimeException;
+use Throwable;
 
 class AjaxHandler extends AbstractHandler
 {
@@ -19,17 +20,24 @@ class AjaxHandler extends AbstractHandler
 
     public function action()
     {
-        $requestBody = $this->getRequestBody();
+        try {
+            $requestBody = $this->getRequestBody();
 
-        [$class, $method] = explode('::', $requestBody['function']);
-        if (!class_exists($class)) {
-            if ($method) {
-                $class .= '::' . $method . '()';
+            [$class, $method] = explode('::', $requestBody['function']);
+            if (!class_exists($class)) {
+                if ($method) {
+                    $class .= '::' . $method . '()';
+                }
+
+                throw new RuntimeException(sprintf('Callable %s does not exist', $class));
             }
 
-            throw new RuntimeException(sprintf('Callable %s does not exist', $class));
-        }
+            return call_user_func([new $class(), $method], ...$requestBody['arguments'] ?? []);
+        } catch (Throwable $ex) {
+            logger()->error('ajax/' . date('Ymd'), $ex->getMessage());
+            logger()->error('ajax/' . date('Ymd'), $ex->getTraceAsString());
 
-        return call_user_func([new $class(), $method], ...$requestBody['arguments'] ?? []);
+            return ['error' => true, 'message' => $ex->getMessage()];
+        }
     }
 }
