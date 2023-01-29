@@ -1,0 +1,9 @@
+{
+  "name": "bfst/order",
+  "autoload": {
+    "psr-4": {
+      "BFST\\Order\\": "src/"
+    }
+  },
+  "minimum-stability": "dev"
+}

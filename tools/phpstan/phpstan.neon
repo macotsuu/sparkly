@@ -1,6 +1,0 @@
-parameters:
-    level: 4
-    paths:
-        - ../../app
-        - ../../public
-        - ../../tests

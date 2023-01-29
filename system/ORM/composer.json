@@ -1,0 +1,9 @@
+{
+  "name": "volcano/orm",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "\\Volcano\\ORM": "src/"
+    }
+  }
+}

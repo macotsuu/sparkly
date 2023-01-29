@@ -1,0 +1,9 @@
+{
+  "name": "volcano/cache",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "\\Volcano\\Cache": "src/"
+    }
+  }
+}
