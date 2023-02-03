@@ -1,9 +1,0 @@
-{
-  "name": "volcano/logger",
-  "type": "library",
-  "autoload": {
-    "psr-4": {
-      "\\Volcano\\Logger": "src/"
-    }
-  }
-}

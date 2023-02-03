@@ -1,9 +1,0 @@
-{
-  "name": "volcano/foundation",
-  "type": "library",
-  "autoload": {
-    "psr-4": {
-      "\\Volcano\\Foundation\\": "src/"
-    }
-  }
-}

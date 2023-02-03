@@ -1,9 +1,0 @@
-{
-  "name": "bfst/base",
-  "type": "library",
-  "autoload": {
-    "psr-4": {
-      "\\BFST\\Base\\": "src/"
-    }
-  }
-}
