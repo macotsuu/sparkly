@@ -1,9 +1,0 @@
-{
-  "name": "volcano/routing",
-  "type": "library",
-  "autoload": {
-    "psr-4": {
-      "\\Volcano\\Routing": "src/"
-    }
-  }
-}

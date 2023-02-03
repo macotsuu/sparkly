@@ -1,9 +1,0 @@
-{
-  "name": "volcano/http",
-  "type": "library",
-  "autoload": {
-    "psr-4": {
-      "\\Volcano\\Http": "src/"
-    }
-  }
-}
