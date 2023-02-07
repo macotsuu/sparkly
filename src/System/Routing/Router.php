@@ -48,8 +48,8 @@ class Router
 
     /**
      * @param Request $request
-     * @param Response $response
-     * @return ?Response
+     * @param Response|null $response
+     * @return Response
      */
     private function prepareResponse(Request $request, ?Response $response): Response
     {

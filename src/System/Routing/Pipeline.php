@@ -5,7 +5,6 @@ namespace Sparkly\System\Routing;
 use Closure;
 use Sparkly\System\Http\Middleware\MiddlewareInterface;
 use Sparkly\System\Http\Response;
-use Throwable;
 
 class Pipeline
 {
@@ -77,10 +76,7 @@ class Pipeline
     protected function prepareCallable(Closure $destination): Closure
     {
         return function ($passable) use ($destination) {
-            try {
-                return $destination($passable);
-            } catch (Throwable $e) {
-            }
+            return $destination($passable);
         };
     }
 }

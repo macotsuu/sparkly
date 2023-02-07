@@ -30,7 +30,7 @@ class Sparkly extends HttpKernel
 
         $this->setBasePath(SPARKLY_ROOT_DIR);
         $this->loadEnv();
-        $this->loadRoutes($this->basePath . 'src/**/**/Resources/routes.php');
+        $this->loadRoutes($this->basePath . 'src/Sparkly/**/Resources/routes.php');
     }
 
     public function setBasePath(string $path): self
@@ -39,9 +39,8 @@ class Sparkly extends HttpKernel
         return $this;
     }
 
-    private function loadEnv(): self
+    private function loadEnv(): void
     {
         (Dotenv::createImmutable($this->basePath))->load();
-        return $this;
     }
 }

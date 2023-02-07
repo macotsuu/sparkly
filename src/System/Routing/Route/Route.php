@@ -3,7 +3,6 @@
 namespace Sparkly\System\Routing\Route;
 
 use Sparkly\System\Routing\Callable\CallableDispatcher;
-use Throwable;
 
 final class Route
 {
@@ -34,11 +33,7 @@ final class Route
 
     public function run()
     {
-        try {
-            return (new CallableDispatcher())->dispatch($this);
-        } catch (Throwable $ex) {
-            echo $ex->getMessage();
-        }
+        return (new CallableDispatcher())->dispatch($this);
     }
 
     /**

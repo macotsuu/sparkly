@@ -24,7 +24,6 @@ class RouteDispatcher
     public function dispatch(string $uri, string $method): ?Route
     {
         $result = null;
-        $uri = rtrim($uri, '/') . '/';
 
         foreach ($this->routeCollector->getRoutes() as $routes) {
             foreach ($routes as $route) {

@@ -3,7 +3,6 @@
 namespace Sparkly\System\SSR;
 
 use Sparkly\System\SSR\Engine\EngineInterface;
-use Sparkly\System\SSR\Exception\EngineException;
 
 class SSR
 {
@@ -22,32 +21,24 @@ class SSR
         return $this;
     }
 
-    public function render() {
-        try {
-            $script = implode(';', [
-                $this->dispatchScript(),
-                $this->applicationScript()
-            ]);
+    public function render(): string
+    {
+        $script = implode(';', [
+            $this->dispatchScript(),
+            $this->applicationScript()
+        ]);
 
-            $result = $this->engine->run($script);
-        } catch (EngineException) {
-
-        }
-
+        $result = $this->engine->run($script);
         $decoded = json_decode($result, true);
 
-        if (json_last_error() === JSON_ERROR_NONE) {
-            return $decoded;
-        }
-
-        return $result;
+        return json_last_error() === JSON_ERROR_NONE ? $decoded : $result;
     }
 
-    private function dispatchScript(): string {
-        return <<<JS"
-            var dispatch = function (result) {
-            return {$this->engine->getDispatcher()}(JSON.stringify(result))
-        JS";
+    private function dispatchScript(): string
+    {
+        return <<<JS
+            const dispatch = result => {$this->engine->getDispatcher()}(result)
+        JS;
     }
 
     private function applicationScript(): string {
