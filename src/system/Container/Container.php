@@ -6,7 +6,8 @@ use Exception;
 use ReflectionClass;
 use ReflectionException;
 
-class Container implements ContainerInterface {
+class Container implements ContainerInterface
+{
     private array $services = [];
 
 
@@ -74,7 +75,7 @@ class Container implements ContainerInterface {
             }
 
             return $this->services[$id];
-        } catch (ReflectionException|Exception $ex) {
+        } catch (ReflectionException | Exception $ex) {
             throw new Exception($ex->getMessage());
         }
     }

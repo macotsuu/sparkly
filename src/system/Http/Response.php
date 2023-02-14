@@ -1,6 +1,7 @@
 <?php
 
 namespace Sparkly\System\Http;
+
 class Response
 {
     /** @var int $httpCode */

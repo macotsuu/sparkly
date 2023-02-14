@@ -2,7 +2,6 @@
 
 namespace Sparkly\System\Routing\RouteCollector;
 
-
 use Closure;
 use Sparkly\System\Http\Middleware\MiddlewareInterface;
 use Sparkly\System\Routing\Route\Route;
@@ -78,5 +77,4 @@ class RouteCollector
     {
         return $this->routes;
     }
-
 }
