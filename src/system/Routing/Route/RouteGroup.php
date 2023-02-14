@@ -41,5 +41,4 @@ final class RouteGroup
     {
         call_user_func_array($this->callable, [$this->routeCollectorProxy]);
     }
-
 }

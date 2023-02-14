@@ -4,11 +4,11 @@ namespace Sparkly\System\Routing\Callable;
 
 use Exception;
 
-final readonly class Callback
+final class Callback
 {
     public function __construct(
-        private string $className,
-        private string $method = '__invoke'
+        private readonly string $className,
+        private readonly string $method = '__invoke'
     ) {
     }
 

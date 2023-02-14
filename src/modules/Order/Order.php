@@ -17,5 +17,4 @@ class Order
 
     protected string $table = 'orders o';
     protected string $primaryKey = 'order_id';
-
 }

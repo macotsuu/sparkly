@@ -3,6 +3,7 @@
 namespace Sparkly\System\Routing\Route;
 
 use Sparkly\System\Routing\RouteCollector\RouteCollector;
+
 class RouteResolver
 {
     /** @var RouteDispatcher $routeDispatcher */

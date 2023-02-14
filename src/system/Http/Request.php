@@ -1,6 +1,7 @@
 <?php
 
 namespace Sparkly\System\Http;
+
 class Request
 {
     private string $method;

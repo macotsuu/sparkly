@@ -140,7 +140,7 @@ class Select implements QueryInterface
             . ($this->conditions === [] ? '' : ' WHERE 1=1 ' . implode(' ', $this->conditions))
             . ($this->order === [] ? '' : ' ORDER BY ' . implode(', ', $this->order))
             . ($this->limit === null ? '' : " LIMIT " . ($this->offset === null ? "" : ceil(
-                        $this->offset * $this->limit
-                    ) . ", ") . $this->limit);
+                $this->offset * $this->limit
+            ) . ", ") . $this->limit);
     }
 }

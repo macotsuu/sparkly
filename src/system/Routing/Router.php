@@ -85,5 +85,4 @@ final class Router extends RouteCollectorProxy
 
         return $route;
     }
-
 }
