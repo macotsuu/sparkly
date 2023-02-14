@@ -2,11 +2,12 @@
   "name": "sparkly/sparkly",
   "autoload": {
     "psr-4": {
-      "Sparkly\\": "src/"
+      "Sparkly\\": "src/apps",
+      "Sparkly\\Modules\\": "src/modules",
+      "Sparkly\\System\\": "src/system"
     }
   },
   "require": {
-    "sparkly/volcano": "dev-master",
     "vlucas/phpdotenv": "^5.5"
   },
   "require-dev": {
@@ -16,11 +17,5 @@
     "sort-packages": true,
     "optimize-autoloader": true
   },
-  "minimum-stability": "dev",
-  "repositories": [
-    {
-        "type": "vcs",
-        "url":  "git@github.com:macotsuu/volcano.git"
-    }
-]
+  "minimum-stability": "dev"
 }
