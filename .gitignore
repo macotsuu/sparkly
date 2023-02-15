@@ -8,7 +8,10 @@
 /vendor/
 /var/
 
-/tools/**/vendor/
-/tools/**/node_modules/
+/devops/docker/_volumes/*
+!/devops/docker/_volumes/**/.gitkeep
 
+.DS_Store
+/composer.lock
+.uniqueid.txt
 
