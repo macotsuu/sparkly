@@ -1,0 +1,42 @@
+version: '3.7'
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: devops/docker/containers/php/Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - sparkly-dev
+    volumes:
+      - ./:/var/www/html
+  static-assets:
+    build: devops/docker/containers/nginx
+    ports:
+      - "8000:80"
+    networks:
+      - sparkly-dev
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - php
+      
+  mariadb:
+    build: devops/docker/containers/mariadb
+    environment:
+      MYSQL_DATABASE: sparkly
+      MYSQL_USER: sparkly
+      MYSQL_PASSWORD: app
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    ports:
+      - "4406:3306"
+    volumes:
+      - ./devops/docker/_volumes/mysql:/mysql-data
+    networks:
+      - sparkly-dev
+volumes:
+  mariadb:
+networks:
+  sparkly-dev:
+      driver: bridge

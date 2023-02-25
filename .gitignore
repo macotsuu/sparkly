@@ -1,1 +1,13 @@
 /vendor/
+/node_modules/
+
+/devops/docker/_volumes/
+!/devops/docker/_volumes/**/.gitkeep
+
+.env
+.phpunit.result.cache
+
+.idea/
+.vscode/
+/nbproject/
+.DS_Store
