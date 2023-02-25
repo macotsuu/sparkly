@@ -1,0 +1,11 @@
+{
+    "name": "sparkly/sparkly",
+    "autoload": {
+        "psr-4": {
+            "Sparkly\\": "app/"
+        }
+    },
+    "require": {
+        "php": ">=8.2"
+    }
+}
