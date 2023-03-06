@@ -2,7 +2,6 @@
 
 namespace Sparkly\Core\Providers;
 
-use Sparkly\Framework\Foundation\ServiceProvider;
 use Sparkly\Framework\Log\Handler\FileHandler;
 use Sparkly\Framework\Log\Handler\StdoutHandler;
 use Sparkly\Framework\Log\Logger;

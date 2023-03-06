@@ -5,8 +5,8 @@ namespace Sparkly\Framework\Kernel;
 use Sparkly\Core\HttpKernel\HttpKernel;
 use Sparkly\Core\Providers\LogServiceProvider;
 use Sparkly\Core\Providers\RoutingServiceProvider;
+use Sparkly\Core\Providers\ServiceProvider;
 use Sparkly\Framework\Container\Container;
-use Sparkly\Framework\Foundation\ServiceProvider;
 use Sparkly\Framework\Log\Logger;
 use Sparkly\Framework\Routing\Router;
 

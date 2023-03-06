@@ -1,6 +1,6 @@
 <?php
 
-namespace Sparkly\Framework\Foundation;
+namespace Sparkly\Core\Providers;
 
 use Sparkly\Framework\Kernel\Kernel;
 

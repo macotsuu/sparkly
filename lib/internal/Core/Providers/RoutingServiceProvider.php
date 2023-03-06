@@ -2,8 +2,6 @@
 
 namespace Sparkly\Core\Providers;
 
-use Sparkly\Framework\Foundation\ServiceProvider;
-
 class RoutingServiceProvider extends ServiceProvider
 {
     public function boot(): void
