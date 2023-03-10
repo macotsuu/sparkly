@@ -2,12 +2,10 @@
     "name": "sparkly/sparkly",
     "autoload": {
         "files": [
-            "lib/internal/Framework/helpers.php"
+            "app/code/Framework/Foundation/helpers.php"
         ],
         "psr-4": {
-            "Sparkly\\": "app/code",
-            "Sparkly\\Core\\": "lib/internal/Core",
-            "Sparkly\\Framework\\": "lib/internal/Framework"
+            "Sparkly\\": "app/code"
         }
     },
     "require": {
@@ -16,10 +14,11 @@
         "psr/container": "^2.0"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "^3.7"
+        "squizlabs/php_codesniffer": "^3.7",
+        "phpunit/phpunit": "^10.0"
     },
     "scripts": {
-        "phpcs": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs --standard=PSR12 --report=summary,source app/ lib/internal/",
-        "format": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf --standard=PSR12 --report=summary,source app/ lib/internal/"
+        "phpcs": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs --standard=PSR12 --report=summary,source app/",
+        "format": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf --standard=PSR12 --report=summary,source app/"
     }
 }

@@ -2,15 +2,14 @@
 
 use React\Http\HttpServer;
 use React\Socket\SocketServer;
-use Sparkly\Core\HttpKernel\HttpKernel;
-use Sparkly\Framework\Kernel\Kernel;
+use Sparkly\Framework\Foundation\Kernel;
 
 require_once __DIR__ . '/../app/bootstrap.php';
 
-$kernel = Kernel::getInstance();
-$kernel->boot();
+$sparkly = Kernel::getInstance();
+$sparkly->bootstrap();
 
-$http = new HttpServer(new HttpKernel($kernel));
+$http = new HttpServer($sparkly->make('http.kernel'));
 $http->on('error', function (Exception|TypeError $e) {
     sparkly('logger')->error($e->getMessage());
     sparkly('logger')->error($e->getTraceAsString());
