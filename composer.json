@@ -12,7 +12,8 @@
         "php": ">=8.2",
         "react/http": "^1.8",
         "psr/container": "^2.0",
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "symfony/dotenv": "^6.2"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.7",
