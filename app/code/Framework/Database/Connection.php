@@ -8,7 +8,7 @@ use PDOStatement;
 
 final readonly class Connection implements ConnectionInterface
 {
-    public function __construct()
+    public function __construct(protected \PDO $pdo)
     {
     }
 
@@ -19,7 +19,21 @@ final readonly class Connection implements ConnectionInterface
     {
         return $this->run($query, $attributes)->fetch();
     }
+    /**
+     * @inheritDoc
+     */
+    public function execute(string $query, array $attributes = []): int
+    {
+        return $this->run($query, $attributes)->rowCount();
+    }
 
+    /**
+     * @inheritDoc
+     */
+    public function fetchAll(string $query, array $attributes = []): array
+    {
+        return $this->run($query, $attributes)->fetchAll();
+    }
     /**
      * @param string $query
      * @param array $attributes
@@ -45,21 +59,5 @@ final readonly class Connection implements ConnectionInterface
     private function runQuery(string $query, array $attributes, Closure $callback): PDOStatement
     {
         return $callback($query, $attributes);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function execute(string $query, array $attributes = []): int
-    {
-        return $this->run($query, $attributes)->rowCount();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function fetchAll(string $query, array $attributes = []): array
-    {
-        return $this->run($query, $attributes)->fetchAll();
     }
 }
