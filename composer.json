@@ -2,7 +2,7 @@
     "name": "sparkly/sparkly",
     "autoload": {
         "files": [
-            "app/code/Framework/Foundation/helpers.php"
+            "app/code/Framework/Foundation/Resources/helpers.php"
         ],
         "psr-4": {
             "Sparkly\\": "app/code"
@@ -11,7 +11,8 @@
     "require": {
         "php": ">=8.2",
         "react/http": "^1.8",
-        "psr/container": "^2.0"
+        "psr/container": "^2.0",
+        "ext-pdo": "*"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.7",
