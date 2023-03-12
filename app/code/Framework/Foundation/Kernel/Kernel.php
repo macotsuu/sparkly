@@ -8,6 +8,7 @@ use Sparkly\Framework\Container\ContainerInterface;
 use Sparkly\Framework\Foundation\Application;
 use Sparkly\Framework\Foundation\Kernel\Bootstrap\LoadConfiguration;
 use Sparkly\Framework\Foundation\Kernel\Bootstrap\LoadBundles;
+use Sparkly\Framework\Foundation\Kernel\Bootstrap\LoadEnvConfiguration;
 use Sparkly\Framework\Foundation\Kernel\Bootstrap\SetupDatabase;
 use Sparkly\Framework\Foundation\Kernel\Http\HttpKernel;
 use Sparkly\Framework\Foundation\Kernel\Http\HttpKernelInterface;
@@ -22,6 +23,7 @@ class Kernel
 
     /** @var array|string[] $bootstraps */
     private array $bootstraps = [
+        LoadEnvConfiguration::class,
         LoadConfiguration::class,
         SetupDatabase::class,
         LoadBundles::class,

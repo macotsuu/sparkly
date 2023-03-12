@@ -13,3 +13,10 @@ if (!function_exists('sparkly')) {
     }
 
 }
+
+if (!function_exists('env')) {
+    function env(string $var, string $default = null): mixed
+    {
+        return $_ENV[$var] ?? $default;
+    }
+}
