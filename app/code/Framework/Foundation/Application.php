@@ -71,18 +71,22 @@ class Application extends Container
     }
 
     /**
-     * @param ServiceProvider $provider
+     * @param ServiceProvider|string $provider
      * @return ServiceProvider
      */
-    public function register(ServiceProvider $provider): ServiceProvider
+    public function register(ServiceProvider|string $provider): ServiceProvider
     {
         if (($registered = $this->getProvider($provider))) {
             return $registered;
         }
+        
+        if (is_string($provider)) {
+            $provider = new $provider($this);
+        }
 
         $this->serviceProviders[] = $provider;
 
-        if ($this->isBooted()) {
+        if ($this->kernel->isBooted()) {
             $this->bootProvider($provider);
         }
 
@@ -99,13 +103,17 @@ class Application extends Container
     }
 
     /**
-     * @param ServiceProvider $name
+     * @param ServiceProvider|string $name
      * @return ServiceProvider|null
      */
-    public function getProvider(ServiceProvider $name): ServiceProvider|null
+    public function getProvider(ServiceProvider|string $name): ServiceProvider|null
     {
+        $name = is_string($name)
+            ? $name
+            : get_class($name);
+
         foreach ($this->serviceProviders as $provider) {
-            if ($provider instanceof  $name) {
+            if ($provider instanceof $name) {
                 return $provider;
             }
         }

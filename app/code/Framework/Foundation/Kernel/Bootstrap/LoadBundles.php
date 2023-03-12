@@ -8,5 +8,10 @@ final class LoadBundles
 {
     public function boot(Application $app): void
     {
+        $bundles = $app['config']->get('app.bundles') ?? [];
+
+        foreach ($bundles as $bundle) {
+            $app->register($bundle);
+        }
     }
 }
