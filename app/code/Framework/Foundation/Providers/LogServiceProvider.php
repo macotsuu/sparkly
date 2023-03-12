@@ -11,7 +11,7 @@ class LogServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        $this->kernel['logger'] = (new Logger('app'))
+        $this->app['logger'] = (new Logger('app'))
             ->pushHandler(new StdoutHandler())
             ->pushHandler(new FileHandler(LogLevel::ERROR));
     }

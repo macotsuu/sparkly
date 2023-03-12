@@ -2,15 +2,15 @@
 
 namespace Sparkly\Framework\Foundation\Providers;
 
-use Sparkly\Framework\Foundation\Kernel;
+use Sparkly\Framework\Foundation\Application;
 
 abstract class ServiceProvider
 {
-    protected Kernel $kernel;
+    protected Application $app;
 
-    public function __construct(Kernel $kernel)
+    public function __construct(Application $app)
     {
-        $this->kernel = $kernel;
+        $this->app = $app;
     }
 
     abstract public function boot(): void;
