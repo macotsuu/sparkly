@@ -2,7 +2,6 @@
 
 namespace Sparkly\Framework\Routing\RouteCollector;
 
-use Sparkly\Framework\Container\Container;
 use Sparkly\Framework\Container\ContainerInterface;
 use Sparkly\Framework\Routing\MiddlewareInterface;
 use Sparkly\Framework\Routing\Route\Route;
@@ -15,11 +14,11 @@ class RouteCollectorProxy
 
     /** @var string $groupPattern */
     private string $groupPattern = '';
-    /** @var Container $container */
-    protected Container $container;
+    /** @var ContainerInterface $container */
+    protected ContainerInterface $container;
 
     public function __construct(
-        Container $container,
+        ContainerInterface $container,
         ?RouteCollector $routeCollector = null,
         ?string $groupPattern = null
     ) {

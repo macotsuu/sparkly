@@ -2,10 +2,10 @@
 
 namespace Sparkly\Framework\Routing\Callback;
 
-use Psr\Http\Message\ResponseInterface as Response;
+use ReflectionException;
 use ReflectionMethod;
 use ReflectionParameter;
-use Sparkly\Framework\Container\Container;
+use Psr\Http\Message\ResponseInterface as Response;
 use Sparkly\Framework\Container\ContainerInterface;
 use Sparkly\Framework\Routing\Route\Route;
 
@@ -14,7 +14,7 @@ class CallbackDispatcher
     private ContainerInterface $container;
     private CallbackResolver $callbackResolver;
 
-    public function __construct(Container $container)
+    public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
         $this->callbackResolver = new CallbackResolver();
@@ -23,6 +23,7 @@ class CallbackDispatcher
     /**
      * @param Route $route
      * @return Response
+     * @throws ReflectionException
      */
     public function dispatch(Route $route): Response
     {
@@ -30,23 +31,17 @@ class CallbackDispatcher
         $reflector = new ReflectionMethod($callback->getClassname(), $callback->getMethod());
         $parameters = $route->getAttributes();
 
-
         foreach ($reflector->getParameters() as $key => $parameter) {
             $className = $this->getClassName($parameter);
-            print_r($className);
+
             $instance = $className
-                ? $parameter->isDefaultValueAvailable() ? $parameter->getDefaultValue() : $this->container->make(
-                    $className
-                )
+                ? $parameter->isDefaultValueAvailable()
+                    ? $parameter->getDefaultValue()
+                    : $this->container->make($className)
                 : null;
 
 
-            array_splice(
-                $parameters,
-                $key,
-                0,
-                [$instance]
-            );
+            array_splice($parameters, $key, 0, [$instance]);
         }
 
         return $this->call($callback->getClassname(), $callback->getMethod(), $parameters);

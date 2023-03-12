@@ -3,7 +3,6 @@
 namespace Sparkly\Framework\Routing\RouteCollector;
 
 use Closure;
-use Sparkly\Framework\Container\Container;
 use Sparkly\Framework\Container\ContainerInterface;
 use Sparkly\Framework\Routing\MiddlewareInterface;
 use Sparkly\Framework\Routing\Route\Route;
@@ -16,10 +15,10 @@ class RouteCollector
 
     /** @var array<MiddlewareInterface> $middlewares */
     private array $middlewares = [];
-    /** @var Container $container */
-    protected Container $container;
+    /** @var ContainerInterface $container */
+    protected ContainerInterface $container;
 
-    public function __construct(Container $container)
+    public function __construct(ContainerInterface $container)
     {
         $this->setContainer($container);
     }
