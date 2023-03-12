@@ -30,7 +30,6 @@ class Registry
     }
 
     /**
-     *
      * @param string $key
      * @param mixed $default
      * @return mixed
