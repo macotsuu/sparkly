@@ -1,4 +1,5 @@
 <?php
+
     return [
         'hostname' => 'localhost',
         'port' => 3306,
@@ -6,4 +7,3 @@
         'password' => 'sparkly',
         'database' => 'sparkly'
     ];
-    

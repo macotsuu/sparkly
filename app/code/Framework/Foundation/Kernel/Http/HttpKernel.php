@@ -24,7 +24,7 @@ final class HttpKernel implements HttpKernelInterface
     {
         try {
             $this->app['router']->get('/', SearchProductController::class);
-    
+
             return $this->handle($request);
         } catch (RouteNotFound) {
             return Response::html("Route {$request->getUri()->getPath()} - not found");
@@ -42,7 +42,7 @@ final class HttpKernel implements HttpKernelInterface
             return Response::html("Internal Server Error");
         }
     }
-    
+
     /**
      * @param RequestInterface $request
      * @return ResponseInterface
