@@ -2,7 +2,9 @@
 
 namespace Sparkly\Product\Entity;
 
-class Product
+use Sparkly\Framework\Database\ORM\Entity;
+
+class Product extends Entity
 {
-    
+    protected string $table = 'products';
 }
