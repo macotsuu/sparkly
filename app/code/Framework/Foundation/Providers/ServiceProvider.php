@@ -24,7 +24,7 @@ abstract class ServiceProvider
     public function callback(Closure $callback): void
     {
         $this->bootCallbacks[] = $callback;
-        
+
         if ($this->app->isBooted()) {
             $callback($this->app);
         }

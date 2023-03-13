@@ -23,7 +23,7 @@ class Application extends Container
     {
         $this->kernel = new Kernel($this);
     }
-    
+
     /**
      * @return bool
      */
@@ -31,7 +31,7 @@ class Application extends Container
     {
         return $this->kernel->isBooted();
     }
-    
+
     /**
      * Start application
      * @return void

@@ -14,6 +14,7 @@ final class LoadEnvConfiguration
         try {
             $dotenv = new Dotenv();
             $dotenv->load($app->path(Path::BASE_PATH) . '.env');
-        } catch (PathException) {}
+        } catch (PathException) {
+        }
     }
 }
