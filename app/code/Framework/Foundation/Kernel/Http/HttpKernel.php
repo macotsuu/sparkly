@@ -23,8 +23,6 @@ final class HttpKernel implements HttpKernelInterface
     public function __invoke(RequestInterface $request): ResponseInterface
     {
         try {
-            $this->app['router']->get('/', SearchProductController::class);
-
             return $this->handle($request);
         } catch (RouteNotFound) {
             return Response::html("Route {$request->getUri()->getPath()} - not found");
