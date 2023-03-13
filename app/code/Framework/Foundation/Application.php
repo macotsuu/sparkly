@@ -23,7 +23,15 @@ class Application extends Container
     {
         $this->kernel = new Kernel($this);
     }
-
+    
+    /**
+     * @return bool
+     */
+    public function isBooted(): bool
+    {
+        return $this->kernel->isBooted();
+    }
+    
     /**
      * Start application
      * @return void
@@ -79,10 +87,12 @@ class Application extends Container
         if (($registered = $this->getProvider($provider))) {
             return $registered;
         }
-        
+
         if (is_string($provider)) {
             $provider = new $provider($this);
         }
+
+        $provider->register();
 
         $this->serviceProviders[] = $provider;
 
@@ -99,7 +109,11 @@ class Application extends Container
      */
     public function bootProvider(ServiceProvider $provider): void
     {
-        $provider->boot();
+        if (method_exists($provider, 'boot')) {
+            $provider->boot();
+        }
+
+        $provider->callBootCallbacks();
     }
 
     /**

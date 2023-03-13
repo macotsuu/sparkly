@@ -9,10 +9,13 @@ use Sparkly\Framework\Log\LogLevel;
 
 class LogServiceProvider extends ServiceProvider
 {
-    public function boot(): void
+    public function register(): void
     {
         $this->app['logger'] = (new Logger('app'))
             ->pushHandler(new StdoutHandler())
             ->pushHandler(new FileHandler(LogLevel::ERROR));
+    }
+    public function boot(): void
+    {
     }
 }

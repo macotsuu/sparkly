@@ -75,7 +75,6 @@ class Kernel
         $this->app[ContainerInterface::class] = $this->app;
 
         $this->app->bind(HttpKernelInterface::class, fn () => new HttpKernel($this->app));
-        $this->app->bind(Router::class, fn() => new Router($this->app));
     }
 
     /**
